@@ -66,11 +66,6 @@ function Vehicles() {
     currentBattery: "",
   });
 
-
-  // ==========================================
-  // FETCH VEHICLES
-  // ==========================================
-
   const fetchVehicles = async () => {
 
     if (!user?.uid) {
@@ -127,11 +122,6 @@ function Vehicles() {
 
   }, [user]);
 
-
-  // ==========================================
-  // HANDLE INPUT
-  // ==========================================
-
   const handleChange = (e) => {
 
     const {
@@ -145,11 +135,6 @@ function Vehicles() {
     }));
 
   };
-
-
-  // ==========================================
-  // RESET FORM
-  // ==========================================
 
   const resetForm = () => {
 
@@ -168,11 +153,6 @@ function Vehicles() {
 
   };
 
-
-  // ==========================================
-  // OPEN ADD FORM
-  // ==========================================
-
   const handleAddVehicle = () => {
 
     resetForm();
@@ -182,11 +162,6 @@ function Vehicles() {
     setSuccess("");
 
   };
-
-
-  // ==========================================
-  // OPEN EDIT FORM
-  // ==========================================
 
   const handleEditVehicle = (vehicle) => {
 
@@ -216,19 +191,13 @@ function Vehicles() {
 
   };
 
-
-  // ==========================================
-  // VALIDATE FORM
-  // ==========================================
-
   const validateForm = () => {
 
     if (
       !form.brand.trim() ||
       !form.model.trim() ||
       !form.registrationNumber.trim() ||
-      form.batteryCapacity === "" ||
-      form.currentBattery === ""
+      form.batteryCapacity === ""
     ) {
 
       setError(
@@ -240,26 +209,8 @@ function Vehicles() {
     }
 
 
-    const battery =
-      Number(form.currentBattery);
-
     const capacity =
       Number(form.batteryCapacity);
-
-
-    if (
-      Number.isNaN(battery) ||
-      battery < 0 ||
-      battery > 100
-    ) {
-
-      setError(
-        "Battery level must be between 0 and 100."
-      );
-
-      return false;
-
-    }
 
 
     if (
@@ -279,11 +230,6 @@ function Vehicles() {
     return true;
 
   };
-
-
-  // ==========================================
-  // ADD / UPDATE VEHICLE
-  // ==========================================
 
   const handleSubmit = async (e) => {
 
@@ -334,17 +280,14 @@ function Vehicles() {
           form.connectorType,
 
         currentBattery:
-          Number(form.currentBattery),
+          editingVehicle
+            ? Number(form.currentBattery)
+            : 100,
 
         updatedAt:
           serverTimestamp(),
 
       };
-
-
-      // ======================================
-      // UPDATE EXISTING VEHICLE
-      // ======================================
 
       if (editingVehicle) {
 
@@ -367,11 +310,6 @@ function Vehicles() {
         );
 
       }
-
-
-      // ======================================
-      // ADD NEW VEHICLE
-      // ======================================
 
       else {
 
@@ -435,11 +373,6 @@ function Vehicles() {
     }
 
   };
-
-
-  // ==========================================
-  // DELETE VEHICLE
-  // ==========================================
 
   const handleDeleteVehicle = async (vehicle) => {
 
@@ -509,20 +442,11 @@ function Vehicles() {
   };
 
 
-  // ==========================================
-  // CLOSE FORM
-  // ==========================================
-
   const handleCloseForm = () => {
 
     resetForm();
 
   };
-
-
-  // ==========================================
-  // PAGE
-  // ==========================================
 
   return (
 
@@ -533,11 +457,6 @@ function Vehicles() {
         space-y-8
       "
     >
-
-
-      {/* ======================================
-          HEADER
-      ======================================= */}
 
       <div
         className="
@@ -618,11 +537,6 @@ function Vehicles() {
 
       </div>
 
-
-      {/* ======================================
-          MESSAGES
-      ======================================= */}
-
       {(error || success) && (
 
         <div
@@ -652,11 +566,6 @@ function Vehicles() {
         </div>
 
       )}
-
-
-      {/* ======================================
-          ADD / EDIT FORM
-      ======================================= */}
 
       {showForm && (
 
@@ -1032,11 +941,6 @@ function Vehicles() {
         </div>
 
       )}
-
-
-      {/* ======================================
-          VEHICLES
-      ======================================= */}
 
       {!showForm && (
 
