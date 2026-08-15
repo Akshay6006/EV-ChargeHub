@@ -43,11 +43,6 @@ function AdminSettings() {
   const [error, setError] =
     useState("");
 
-
-  // ==========================================
-  // LOAD SETTINGS
-  // ==========================================
-
   useEffect(() => {
 
     const loadSettings =
@@ -105,11 +100,6 @@ function AdminSettings() {
 
   }, []);
 
-
-  // ==========================================
-  // INPUT CHANGE
-  // ==========================================
-
   const updateSetting = (
     key,
     value
@@ -125,11 +115,6 @@ function AdminSettings() {
     setSaved(false);
 
   };
-
-
-  // ==========================================
-  // SAVE
-  // ==========================================
 
   const handleSave =
     async () => {
@@ -225,11 +210,6 @@ function AdminSettings() {
       }
 
     };
-
-
-  // ==========================================
-  // LOADING
-  // ==========================================
 
   if (loading) {
 
@@ -752,10 +732,6 @@ function AdminSettings() {
 }
 
 
-// ==========================================
-// INPUT
-// ==========================================
-
 function SettingInput({
   label,
   suffix,
@@ -828,10 +804,6 @@ function SettingInput({
 
 }
 
-
-// ==========================================
-// TOGGLE
-// ==========================================
 
 function ToggleRow({
   icon: Icon,

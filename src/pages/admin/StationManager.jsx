@@ -28,11 +28,6 @@ function StationManager() {
 
   const [success, setSuccess] = useState("");
 
-
-  // ==========================================
-  // STATION FORM
-  // ==========================================
-
   const [form, setForm] = useState({
 
     name: "",
@@ -47,11 +42,6 @@ function StationManager() {
 
   });
 
-
-  // ==========================================
-  // CHARGER FORM
-  // ==========================================
-
   const [chargerForm, setChargerForm] = useState({
 
     connectorType: "CCS2",
@@ -60,19 +50,7 @@ function StationManager() {
     status: "available"
 
   });
-
-
-  // ==========================================
-  // CHARGERS
-  // ==========================================
-
   const [chargers, setChargers] = useState([]);
-
-
-  // ==========================================
-  // HANDLE STATION INPUT
-  // ==========================================
-
   const handleChange = (e) => {
 
     const {
@@ -87,11 +65,6 @@ function StationManager() {
 
   };
 
-
-  // ==========================================
-  // HANDLE CHARGER INPUT
-  // ==========================================
-
   const handleChargerChange = (e) => {
 
     const {
@@ -105,11 +78,6 @@ function StationManager() {
     }));
 
   };
-
-
-  // ==========================================
-  // ADD CHARGER
-  // ==========================================
 
   const addCharger = () => {
 
@@ -181,11 +149,6 @@ function StationManager() {
 
   };
 
-
-  // ==========================================
-  // REMOVE CHARGER
-  // ==========================================
-
   const removeCharger = (chargerId) => {
 
     setChargers((previous) =>
@@ -197,22 +160,12 @@ function StationManager() {
 
   };
 
-
-  // ==========================================
-  // CREATE STATION
-  // ==========================================
-
   const handleSubmit = async (e) => {
 
     e.preventDefault();
 
     setError("");
     setSuccess("");
-
-
-    // ========================================
-    // REQUIRED STATION FIELDS
-    // ========================================
 
     if (
       !form.name.trim() ||
@@ -229,11 +182,6 @@ function StationManager() {
 
       return;
     }
-
-
-    // ========================================
-    // AT LEAST ONE CHARGER
-    // ========================================
 
     if (chargers.length === 0) {
 
@@ -285,10 +233,6 @@ function StationManager() {
       setLoading(true);
 
 
-      // ========================================
-      // REMOVE TEMPORARY CHARGER IDS
-      // ========================================
-
       const finalChargers =
         chargers.map(
           ({
@@ -296,11 +240,6 @@ function StationManager() {
             ...charger
           }) => charger
         );
-
-
-      // ========================================
-      // CREATE STATION
-      // ========================================
 
       await addDoc(
         collection(db, "stations"),
@@ -360,11 +299,6 @@ function StationManager() {
         "Charging station created successfully."
       );
 
-
-      // ========================================
-      // RESET
-      // ========================================
-
       setForm({
 
         name: "",
@@ -405,11 +339,6 @@ function StationManager() {
 
   };
 
-
-  // ==========================================
-  // CALCULATED COUNTS
-  // ==========================================
-
   const availableCount =
     chargers.filter(
       (charger) =>
@@ -434,11 +363,6 @@ function StationManager() {
   return (
 
     <div className="max-w-7xl mx-auto space-y-8">
-
-
-      {/* ======================================
-          HEADER
-      ======================================= */}
 
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
 
@@ -478,11 +402,6 @@ function StationManager() {
 
       </div>
 
-
-      {/* ======================================
-          SUCCESS
-      ======================================= */}
-
       {success && (
 
         <div className="p-4 rounded-xl bg-emerald-400/10 border border-emerald-400/20 text-emerald-400 text-sm">
@@ -493,19 +412,9 @@ function StationManager() {
 
       )}
 
-
-      {/* ======================================
-          FORM
-      ======================================= */}
-
       {showForm && (
 
         <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6">
-
-
-          {/* ==================================
-              FORM HEADER
-          =================================== */}
 
           <div className="flex items-center justify-between mb-8">
 
@@ -534,11 +443,6 @@ function StationManager() {
 
           </div>
 
-
-          {/* ==================================
-              ERROR
-          =================================== */}
-
           {error && (
 
             <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
@@ -554,11 +458,6 @@ function StationManager() {
             onSubmit={handleSubmit}
             className="space-y-10"
           >
-
-
-            {/* ==================================
-                STATION DETAILS
-            =================================== */}
 
             <div>
 
@@ -761,11 +660,6 @@ function StationManager() {
 
             </div>
 
-
-            {/* ==================================
-                CHARGER SECTION
-            =================================== */}
-
             <div>
 
               <div className="flex items-center gap-2 mb-2">
@@ -785,11 +679,6 @@ function StationManager() {
                 Add each physical charger at this station.
                 Availability will be calculated automatically.
               </p>
-
-
-              {/* ==================================
-                  ADD CHARGER FORM
-              =================================== */}
 
               <div className="bg-slate-950 border border-slate-800 rounded-2xl p-4 sm:p-5">
 
@@ -936,11 +825,6 @@ function StationManager() {
 
               </div>
 
-
-              {/* ==================================
-                  CHARGER LIST
-              =================================== */}
-
               {chargers.length > 0 && (
 
                 <div className="mt-5 space-y-3">
@@ -1030,11 +914,6 @@ function StationManager() {
 
               )}
 
-
-              {/* ==================================
-                  AVAILABILITY SUMMARY
-              =================================== */}
-
               {chargers.length > 0 && (
 
                 <div className="grid grid-cols-3 gap-3 mt-5">
@@ -1083,11 +962,6 @@ function StationManager() {
 
             </div>
 
-
-            {/* ==================================
-                SUBMIT
-            =================================== */}
-
             <div className="flex flex-col-reverse sm:flex-row justify-end gap-3">
 
               <button
@@ -1131,11 +1005,6 @@ function StationManager() {
         </div>
 
       )}
-
-
-      {/* ======================================
-          EMPTY STATE
-      ======================================= */}
 
       {!showForm && (
 

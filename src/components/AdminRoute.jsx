@@ -29,13 +29,11 @@ function AdminRoute({ children }) {
 
     const checkAdmin = async () => {
 
-      // Firebase hasn't finished checking login
+    
       if (authLoading) {
         return;
       }
 
-
-      // No logged-in user
       if (!user) {
 
         setCheckingAdmin(false);
@@ -44,8 +42,6 @@ function AdminRoute({ children }) {
         return;
       }
 
-
-      // Email must be verified
       if (!user.emailVerified) {
 
         setCheckingAdmin(false);
@@ -123,9 +119,6 @@ function AdminRoute({ children }) {
   }, [user, authLoading]);
 
 
-  // ==========================================
-  // CHECKING
-  // ==========================================
 
   if (
     authLoading ||
@@ -153,9 +146,6 @@ function AdminRoute({ children }) {
   }
 
 
-  // ==========================================
-  // NOT LOGGED IN
-  // ==========================================
 
   if (!user) {
 
@@ -169,9 +159,6 @@ function AdminRoute({ children }) {
   }
 
 
-  // ==========================================
-  // EMAIL NOT VERIFIED
-  // ==========================================
 
   if (!user.emailVerified) {
 
@@ -185,10 +172,6 @@ function AdminRoute({ children }) {
   }
 
 
-  // ==========================================
-  // NOT ADMIN
-  // ==========================================
-
   if (!isAdmin) {
 
     return (
@@ -200,10 +183,6 @@ function AdminRoute({ children }) {
 
   }
 
-
-  // ==========================================
-  // ADMIN
-  // ==========================================
 
   return children;
 

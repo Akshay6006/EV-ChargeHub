@@ -105,11 +105,6 @@ function AdminBookings() {
 
   }, []);
 
-
-  // ==========================================
-  // DATE HELPERS
-  // ==========================================
-
   const getDate = (
     value
   ) => {
@@ -215,10 +210,6 @@ function AdminBookings() {
   };
 
 
-  // ==========================================
-  // NORMALIZE STATUS
-  // ==========================================
-
   const getBookingStatus = (
     booking
   ) => {
@@ -277,11 +268,6 @@ function AdminBookings() {
     return status || "pending";
 
   };
-
-
-  // ==========================================
-  // FILTER
-  // ==========================================
 
   const filteredBookings =
     useMemo(() => {
@@ -391,11 +377,6 @@ function AdminBookings() {
       statusFilter,
     ]);
 
-
-  // ==========================================
-  // COUNTS
-  // ==========================================
-
   const totalBookings =
     bookings.length;
 
@@ -445,11 +426,6 @@ function AdminBookings() {
         ) || 0),
       0
     );
-
-
-  // ==========================================
-  // CANCEL BOOKING
-  // ==========================================
 
   const cancelBooking =
     async (booking) => {
@@ -530,11 +506,6 @@ function AdminBookings() {
 
     };
 
-
-  // ==========================================
-  // LOADING
-  // ==========================================
-
   if (loading) {
 
     return (
@@ -590,10 +561,6 @@ function AdminBookings() {
         space-y-7
       "
     >
-
-      {/* ======================================
-          HEADER
-      ======================================= */}
 
       <div
         className="
@@ -664,11 +631,6 @@ function AdminBookings() {
 
       </div>
 
-
-      {/* ======================================
-          ERROR
-      ======================================= */}
-
       {error && (
 
         <div
@@ -687,11 +649,6 @@ function AdminBookings() {
         </div>
 
       )}
-
-
-      {/* ======================================
-          SUMMARY
-      ======================================= */}
 
       <div
         className="
@@ -752,11 +709,6 @@ function AdminBookings() {
 
       </div>
 
-
-      {/* ======================================
-          REFUNDS
-      ======================================= */}
-
       {totalRefunded > 0 && (
 
         <div
@@ -807,11 +759,6 @@ function AdminBookings() {
         </div>
 
       )}
-
-
-      {/* ======================================
-          FILTERS
-      ======================================= */}
 
       <div
         className="
@@ -922,10 +869,6 @@ function AdminBookings() {
 
       </div>
 
-
-      {/* ======================================
-          BOOKINGS
-      ======================================= */}
 
       <section
         className="
@@ -1496,11 +1439,6 @@ function AdminBookings() {
 
 }
 
-
-// ==========================================
-// SUMMARY CARD
-// ==========================================
-
 function SummaryCard({
   title,
   value,
@@ -1564,11 +1502,6 @@ function SummaryCard({
   );
 
 }
-
-
-// ==========================================
-// INFO BOX
-// ==========================================
 
 function InfoBox({
   icon: Icon,
@@ -1649,11 +1582,6 @@ function InfoBox({
   );
 
 }
-
-
-// ==========================================
-// STATUS BADGE
-// ==========================================
 
 function StatusBadge({
   status,

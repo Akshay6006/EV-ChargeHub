@@ -31,10 +31,6 @@ function AdminReports() {
   const [period, setPeriod] = useState("30");
 
 
-  // ==========================================
-  // LOAD REAL BOOKINGS
-  // ==========================================
-
   useEffect(() => {
 
     const bookingsQuery =
@@ -92,10 +88,6 @@ function AdminReports() {
   }, []);
 
 
-  // ==========================================
-  // DATE HELPERS
-  // ==========================================
-
   const getDate =
     (value) => {
 
@@ -138,11 +130,6 @@ function AdminReports() {
           maximumFractionDigits: 2,
         }
       )}`;
-
-
-  // ==========================================
-  // FILTER BY PERIOD
-  // ==========================================
 
   const filteredBookings =
     useMemo(() => {
@@ -194,10 +181,6 @@ function AdminReports() {
       period,
     ]);
 
-
-  // ==========================================
-  // REPORT CALCULATIONS
-  // ==========================================
 
   const report =
     useMemo(() => {
@@ -320,10 +303,6 @@ function AdminReports() {
     ]);
 
 
-  // ==========================================
-  // STATION PERFORMANCE
-  // ==========================================
-
   const stationPerformance =
     useMemo(() => {
 
@@ -423,10 +402,6 @@ function AdminReports() {
     ]);
 
 
-  // ==========================================
-  // DAILY REVENUE
-  // ==========================================
-
   const dailyRevenue =
     useMemo(() => {
 
@@ -519,10 +494,6 @@ function AdminReports() {
     );
 
 
-  // ==========================================
-  // RECENT TRANSACTIONS
-  // ==========================================
-
   const recentTransactions =
     useMemo(() => {
 
@@ -561,10 +532,6 @@ function AdminReports() {
       filteredBookings,
     ]);
 
-
-  // ==========================================
-  // LOADING
-  // ==========================================
 
   if (loading) {
 
@@ -608,10 +575,6 @@ function AdminReports() {
   }
 
 
-  // ==========================================
-  // PAGE
-  // ==========================================
-
   return (
 
     <div
@@ -621,10 +584,6 @@ function AdminReports() {
         space-y-7
       "
     >
-
-      {/* ======================================
-          HEADER
-      ======================================= */}
 
       <div
         className="
@@ -745,11 +704,6 @@ function AdminReports() {
 
       </div>
 
-
-      {/* ======================================
-          SUMMARY CARDS
-      ======================================= */}
-
       <div
         className="
           grid
@@ -799,11 +753,6 @@ function AdminReports() {
 
       </div>
 
-
-      {/* ======================================
-          SESSION SUMMARY
-      ======================================= */}
-
       <div
         className="
           grid
@@ -849,11 +798,6 @@ function AdminReports() {
         />
 
       </div>
-
-
-      {/* ======================================
-          REVENUE CHART
-      ======================================= */}
 
       <section
         className="
@@ -1018,12 +962,6 @@ function AdminReports() {
         )}
 
       </section>
-
-
-      {/* ======================================
-          STATION PERFORMANCE
-      ======================================= */}
-
       <section
         className="
           bg-slate-900
@@ -1286,11 +1224,6 @@ function AdminReports() {
 
       </section>
 
-
-      {/* ======================================
-          RECENT BOOKINGS
-      ======================================= */}
-
       <section
         className="
           bg-slate-900
@@ -1523,11 +1456,6 @@ function AdminReports() {
 
 }
 
-
-// ==========================================
-// REPORT CARD
-// ==========================================
-
 function ReportCard({
   title,
   value,
@@ -1602,12 +1530,6 @@ function ReportCard({
   );
 
 }
-
-
-// ==========================================
-// SMALL CARD
-// ==========================================
-
 function SmallCard({
   title,
   value,

@@ -28,11 +28,6 @@ import {
 import { db } from "../../firebase/firebase";
 import { useAuth } from "../../context/AuthContext";
 
-
-// ==========================================
-// TIME HELPERS
-// ==========================================
-
 function getRemainingSeconds(endAt) {
 
   if (!endAt) {
@@ -80,11 +75,6 @@ function formatTime(totalSeconds) {
   return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 }
 
-
-// ==========================================
-// MAIN
-// ==========================================
-
 function Bookings() {
 
   const { user } = useAuth();
@@ -101,11 +91,6 @@ function Bookings() {
 
   const [error, setError] =
     useState("");
-
-
-  // ==========================================
-  // FETCH BOOKINGS
-  // ==========================================
 
   useEffect(() => {
 
@@ -201,21 +186,6 @@ function Bookings() {
 
   }, [user]);
 
-
-  // ==========================================
-  // CHARGING SESSION ENGINE
-  // ==========================================
-  //
-  // confirmed
-  //     ↓ startAt
-  // active
-  //     ↓ endAt
-  // completed
-  //
-  // Completion is allowed ONLY when the booking
-  // is ACTIVE and its real remaining time is 0.
-  // ==========================================
-
   useEffect(() => {
 
     if (!bookings.length) {
@@ -255,7 +225,6 @@ function Bookings() {
           const end =
             new Date(booking.endAt).getTime();
 
-          // Never process invalid time values.
           if (
             !Number.isFinite(start) ||
             !Number.isFinite(end) ||
@@ -263,10 +232,6 @@ function Bookings() {
           ) {
             continue;
           }
-
-          // ======================================
-          // START CHARGING
-          // ======================================
 
           if (
             booking.status === "confirmed" &&
@@ -310,24 +275,8 @@ function Bookings() {
               );
 
             }
-
-            // Never complete the same booking
-            // during the start check.
             continue;
           }
-
-          // ======================================
-          // COMPLETE CHARGING
-          // ======================================
-          //
-          // IMPORTANT FIX:
-          // A CONFIRMED booking can NEVER trigger
-          // the completion popup.
-          //
-          // The popup appears only when:
-          // status === active
-          // AND remainingSeconds === 0
-          // ======================================
 
           const remainingSeconds =
             Math.max(
@@ -412,16 +361,9 @@ function Bookings() {
   }, [bookings]);
 
 
-  // ==========================================
-  // CANCEL + REFUND
-  // ==========================================
-
   const handleCancelBooking =
     async (booking) => {
 
-      // ----------------------------------------
-      // ONLY CONFIRMED OR ACTIVE
-      // ----------------------------------------
 
       if (
         booking.status !==
@@ -456,11 +398,6 @@ function Bookings() {
           booking.id
         );
 
-
-        // ----------------------------------------
-        // TIME CALCULATION
-        // ----------------------------------------
-
         const now =
           Date.now();
 
@@ -490,11 +427,6 @@ function Bookings() {
 
         let usedDurationMs = 0;
 
-
-        // ----------------------------------------
-        // CONFIRMED = NOTHING USED
-        // ----------------------------------------
-
         if (
           booking.status ===
           "confirmed"
@@ -503,11 +435,6 @@ function Bookings() {
           usedDurationMs = 0;
 
         }
-
-
-        // ----------------------------------------
-        // ACTIVE = CALCULATE USED TIME
-        // ----------------------------------------
 
         if (
           booking.status ===
@@ -524,11 +451,6 @@ function Bookings() {
             );
 
         }
-
-
-        // ----------------------------------------
-        // MINUTES
-        // ----------------------------------------
 
         const usedMinutes =
           Math.floor(
@@ -549,11 +471,6 @@ function Bookings() {
             totalMinutes -
               usedMinutes
           );
-
-
-        // ----------------------------------------
-        // MONEY
-        // ----------------------------------------
 
         const totalAmount =
           Number(
@@ -596,11 +513,6 @@ function Bookings() {
             refundAmount.toFixed(2)
           );
 
-
-        // ----------------------------------------
-        // FIRESTORE REFERENCES
-        // ----------------------------------------
-
         const bookingRef =
           doc(
             db,
@@ -615,11 +527,6 @@ function Bookings() {
             "users",
             user.uid
           );
-
-
-        // ----------------------------------------
-        // ATOMIC TRANSACTION
-        // ----------------------------------------
 
         await runTransaction(
           db,
@@ -686,11 +593,6 @@ function Bookings() {
                 ).toFixed(2)
               );
 
-
-            // --------------------------------------
-            // UPDATE BOOKING
-            // --------------------------------------
-
             transaction.update(
               bookingRef,
               {
@@ -722,10 +624,6 @@ function Bookings() {
             );
 
 
-            // --------------------------------------
-            // UPDATE WALLET
-            // --------------------------------------
-
             transaction.set(
               userRef,
               {
@@ -743,10 +641,6 @@ function Bookings() {
           }
         );
 
-
-        // ----------------------------------------
-        // UPDATE SCREEN
-        // ----------------------------------------
 
         setBookings(
           (previous) =>
@@ -783,11 +677,6 @@ function Bookings() {
                   : item
             )
         );
-
-
-        // ----------------------------------------
-        // MESSAGE
-        // ----------------------------------------
 
         if (
           refundAmount > 0
@@ -830,11 +719,6 @@ function Bookings() {
 
     };
 
-
-  // ==========================================
-  // LOADING
-  // ==========================================
-
   if (loading) {
 
     return (
@@ -872,11 +756,6 @@ function Bookings() {
     );
 
   }
-
-
-  // ==========================================
-  // ERROR
-  // ==========================================
 
   if (error) {
 
@@ -929,11 +808,6 @@ function Bookings() {
     );
 
   }
-
-
-  // ==========================================
-  // EMPTY
-  // ==========================================
 
   if (
     bookings.length === 0
@@ -1056,11 +930,6 @@ function Bookings() {
 
   }
 
-
-  // ==========================================
-  // MAIN
-  // ==========================================
-
   return (
 
     <div className="
@@ -1135,11 +1004,6 @@ function Bookings() {
 
 }
 
-
-// ==========================================
-// BOOKING CARD
-// ==========================================
-
 function BookingCard({
   booking,
   handleCancelBooking,
@@ -1149,11 +1013,6 @@ function BookingCard({
   const status =
     booking.status ||
     "confirmed";
-
-
-  // ==========================================
-  // LIVE TIMER
-  // ==========================================
 
   const [
     remainingSeconds,
@@ -1207,11 +1066,6 @@ function BookingCard({
     status,
     booking.endAt,
   ]);
-
-
-  // ==========================================
-  // STATUS CONFIG
-  // ==========================================
 
   const statusConfig = {
 
@@ -1280,11 +1134,6 @@ function BookingCard({
 
   const StatusIcon =
     config.icon;
-
-
-  // ==========================================
-  // CARD
-  // ==========================================
 
   return (
 
@@ -1616,11 +1465,6 @@ function BookingCard({
 
         </div>
 
-
-        {/* ======================================
-            CONFIRMED
-        ======================================= */}
-
         {status ===
           "confirmed" && (
 
@@ -1680,11 +1524,6 @@ function BookingCard({
           </div>
 
         )}
-
-
-        {/* ======================================
-            ACTIVE
-        ======================================= */}
 
         {status ===
           "active" && (
@@ -1968,11 +1807,6 @@ function BookingCard({
 
         )}
 
-
-        {/* ======================================
-            COMPLETED
-        ======================================= */}
-
         {status ===
           "completed" && (
 
@@ -2066,10 +1900,6 @@ function BookingCard({
 
         )}
 
-
-        {/* ======================================
-            CANCELLED + REFUND
-        ======================================= */}
 
         {status ===
           "cancelled" && (
@@ -2198,10 +2028,6 @@ function BookingCard({
 
       </div>
 
-
-      {/* ======================================
-          FOOTER
-      ======================================= */}
 
       <div className="
         border-t

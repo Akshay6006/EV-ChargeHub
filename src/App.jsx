@@ -24,24 +24,14 @@ import {
 
 import { useState } from "react";
 
-// ==========================================
-// ROUTE PROTECTION
-// ==========================================
-
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
 
-// ==========================================
-// AUTH PAGES
-// ==========================================
 
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import VerifyEmail from "./pages/auth/VerifyEmail";
 
-// ==========================================
-// USER
-// ==========================================
 
 import UserLayout from "./layouts/UserLayout";
 
@@ -55,10 +45,6 @@ import History from "./pages/user/History";
 import Favorites from "./pages/user/Favorites";
 import Profile from "./pages/user/Profile";
 
-// ==========================================
-// ADMIN
-// ==========================================
-
 import AdminLayout from "./layouts/AdminLayout";
 
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -70,10 +56,6 @@ import AdminSettings from "./pages/admin/AdminSettings";
 import AdminChargers from "./pages/admin/AdminChargers";
 import AdminUsers from "./pages/admin/AdminUsers";
 
-
-// ==========================================
-// HOME / LANDING PAGE
-// ==========================================
 
 function Home() {
 
@@ -96,10 +78,6 @@ function Home() {
         overflow-hidden
       "
     >
-
-      {/* ==========================================
-          NAVBAR
-      ========================================== */}
 
       <nav
         className="
@@ -489,17 +467,7 @@ function Home() {
 
       </nav>
 
-
-      {/* ==========================================
-          MAIN
-      ========================================== */}
-
       <main className="pt-20">
-
-
-        {/* ==========================================
-            HERO
-        ========================================== */}
 
         <section
           className="
@@ -575,10 +543,6 @@ function Home() {
                 lg:py-24
               "
             >
-
-              {/* ==================================
-                  HERO CONTENT
-              ================================== */}
 
               <div>
 
@@ -820,10 +784,6 @@ function Home() {
 
               </div>
 
-
-              {/* ==================================
-                  HERO IMAGE
-              ================================== */}
 
               <div
                 className="
@@ -1116,11 +1076,6 @@ function Home() {
 
         </section>
 
-
-        {/* ==========================================
-            TRUST STRIP
-        ========================================== */}
-
         <section
           className="
             border-y
@@ -1181,11 +1136,6 @@ function Home() {
           </div>
 
         </section>
-
-
-        {/* ==========================================
-            FEATURES
-        ========================================== */}
 
         <section
           id="features"
@@ -1400,11 +1350,6 @@ function Home() {
 
         </section>
 
-
-        {/* ==========================================
-            HOW IT WORKS
-        ========================================== */}
-
         <section
           id="how-it-works"
           className="
@@ -1509,11 +1454,6 @@ function Home() {
           </div>
 
         </section>
-
-
-        {/* ==========================================
-            WHY CHARGEHUB
-        ========================================== */}
 
         <section
           id="about"
@@ -1708,11 +1648,6 @@ function Home() {
 
         </section>
 
-
-        {/* ==========================================
-            CTA
-        ========================================== */}
-
         <section
           className="
             pb-24
@@ -1853,11 +1788,6 @@ function Home() {
 
       </main>
 
-
-      {/* ==========================================
-          FOOTER
-      ========================================== */}
-
       <footer
         className="
           border-t
@@ -1973,10 +1903,6 @@ function Home() {
 }
 
 
-// ==========================================
-// FEATURE CARD
-// ==========================================
-
 function FeatureCard({
   icon: Icon,
   title,
@@ -2048,10 +1974,6 @@ function FeatureCard({
   );
 }
 
-
-// ==========================================
-// STEP CARD
-// ==========================================
 
 function StepCard({
   number,
@@ -2146,11 +2068,6 @@ function StepCard({
   );
 }
 
-
-// ==========================================
-// TRUST ITEM
-// ==========================================
-
 function TrustItem({
   icon: Icon,
   title,
@@ -2224,11 +2141,6 @@ function TrustItem({
   );
 }
 
-
-// ==========================================
-// BENEFIT
-// ==========================================
-
 function Benefit({
   icon: Icon,
   title,
@@ -2299,11 +2211,6 @@ function Benefit({
   );
 }
 
-
-// ==========================================
-// APP
-// ==========================================
-
 function App() {
 
   return (
@@ -2311,11 +2218,6 @@ function App() {
     <BrowserRouter>
 
       <Routes>
-
-
-        {/* ==================================
-            PUBLIC ROUTES
-        =================================== */}
 
         <Route
           path="/"
@@ -2339,11 +2241,6 @@ function App() {
           path="/verify-email"
           element={<VerifyEmail />}
         />
-
-
-        {/* ==================================
-            PROTECTED USER ROUTES
-        =================================== */}
 
         <Route
 
@@ -2398,32 +2295,20 @@ function App() {
             element={<Vehicles />}
           />
 
-
-          {/* HISTORY */}
-
           <Route
             path="/history"
             element={<History />}
           />
-
-
-          {/* FAVORITES */}
 
           <Route
             path="/favorites"
             element={<Favorites />}
           />
 
-
-          {/* WALLET */}
-
           <Route
             path="/wallet"
             element={<Wallet />}
           />
-
-
-          {/* PROFILE */}
 
           <Route
             path="/profile"
@@ -2431,11 +2316,6 @@ function App() {
           />
 
         </Route>
-
-
-        {/* ==================================
-            ADMIN ROUTES
-        =================================== */}
 
         <Route
 
@@ -2451,63 +2331,40 @@ function App() {
 
         >
 
-          {/* ADMIN DASHBOARD */}
-
           <Route
             path="/admin"
             element={<AdminDashboard />}
           />
-
-
-          {/* STATIONS */}
 
           <Route
             path="/admin/stations"
             element={<StationManager />}
           />
 
-
-          {/* BOOKINGS */}
-
           <Route
             path="/admin/bookings"
             element={<AdminBookings />}
           />
-
-
-          {/* CHARGING */}
 
           <Route
             path="/admin/charging"
             element={<AdminCharging />}
           />
 
-
-          {/* REPORTS */}
-
           <Route
             path="/admin/reports"
             element={<AdminReports />}
           />
-
-
-          {/* SETTINGS */}
 
           <Route
             path="/admin/settings"
             element={<AdminSettings />}
           />
 
-
-          {/* CHARGERS */}
-
           <Route
             path="/admin/chargers"
             element={<AdminChargers />}
           />
-
-
-          {/* USERS */}
 
           <Route
             path="/admin/users"

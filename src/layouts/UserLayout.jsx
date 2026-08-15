@@ -35,9 +35,6 @@ function UserLayout() {
     useState(false);
 
 
-  // ==========================================
-  // LOGOUT
-  // ==========================================
 
   const handleLogout = async () => {
 
@@ -48,9 +45,7 @@ function UserLayout() {
   };
 
 
-  // ==========================================
-  // SIDEBAR NAVIGATION
-  // ==========================================
+  
 
   const navItems = [
 
@@ -90,9 +85,6 @@ function UserLayout() {
       icon: Heart,
     },
 
-    // ========================================
-    // WALLET
-    // ========================================
 
     {
       label: "My Wallet",
@@ -124,9 +116,6 @@ function UserLayout() {
     ">
 
 
-      {/* ======================================
-          MOBILE OVERLAY
-      ======================================= */}
 
       {sidebarOpen && (
 
@@ -146,9 +135,6 @@ function UserLayout() {
       )}
 
 
-      {/* ======================================
-          SIDEBAR
-      ======================================= */}
 
       <aside
         className={`
@@ -177,9 +163,6 @@ function UserLayout() {
       >
 
 
-        {/* ====================================
-            LOGO
-        ===================================== */}
 
         <div className="
           h-20
@@ -260,9 +243,6 @@ function UserLayout() {
         </div>
 
 
-        {/* ====================================
-            NAVIGATION
-        ===================================== */}
 
         <nav className="
           flex-1
@@ -337,9 +317,6 @@ function UserLayout() {
         </nav>
 
 
-        {/* ====================================
-            USER SECTION
-        ===================================== */}
 
         <div className="
           p-4
@@ -357,7 +334,7 @@ function UserLayout() {
           ">
 
 
-            {/* AVATAR */}
+       
 
             <div className="
               w-10
@@ -378,8 +355,6 @@ function UserLayout() {
 
             </div>
 
-
-            {/* USER INFO */}
 
             <div className="
               flex-1
@@ -414,8 +389,6 @@ function UserLayout() {
           </div>
 
 
-          {/* LOGOUT */}
-
           <button
             onClick={handleLogout}
             className="
@@ -445,20 +418,12 @@ function UserLayout() {
       </aside>
 
 
-      {/* ======================================
-          MAIN AREA
-      ======================================= */}
-
       <div className="
         lg:ml-72
         min-h-screen
         min-w-0
       ">
 
-
-        {/* ====================================
-            TOP BAR
-        ===================================== */}
 
         <header className="
           h-16
@@ -483,8 +448,6 @@ function UserLayout() {
           ">
 
 
-            {/* MOBILE MENU */}
-
             <button
               onClick={() =>
                 setSidebarOpen(true)
@@ -508,8 +471,6 @@ function UserLayout() {
             </button>
 
 
-            {/* DESKTOP TITLE */}
-
             <div className="
               hidden
               lg:block
@@ -525,16 +486,12 @@ function UserLayout() {
             </div>
 
 
-            {/* RIGHT */}
-
             <div className="
               flex
               items-center
               gap-3
             ">
 
-
-              {/* NOTIFICATION */}
 
               <button
                 className="
@@ -569,8 +526,6 @@ function UserLayout() {
 
               </button>
 
-
-              {/* USER */}
 
               <div className="
                 hidden
@@ -633,10 +588,6 @@ function UserLayout() {
 
         </header>
 
-
-        {/* ====================================
-            PAGE CONTENT
-        ===================================== */}
 
         <main className="
           p-3

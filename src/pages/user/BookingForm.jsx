@@ -30,17 +30,10 @@ function BookingForm() {
 
   const { user } = useAuth();
 
-  // ==========================================
-  // SELECTED STATION
-  // ==========================================
 
   const station =
     location.state?.station || null;
 
-
-  // ==========================================
-  // FORM STATE
-  // ==========================================
 
   const [selectedCharger, setSelectedCharger] =
     useState("");
@@ -55,20 +48,12 @@ function BookingForm() {
     useState("30");
 
 
-  // ==========================================
-  // UI STATE
-  // ==========================================
-
   const [loading, setLoading] =
     useState(false);
 
   const [error, setError] =
     useState("");
 
-
-  // ==========================================
-  // AVAILABLE CHARGERS
-  // ==========================================
 
   const chargers =
     station?.chargers || [];
@@ -86,10 +71,6 @@ function BookingForm() {
       );
 
 
-  // ==========================================
-  // DEFAULT DATE
-  // ==========================================
-
   useEffect(() => {
 
     const today =
@@ -101,10 +82,6 @@ function BookingForm() {
 
   }, []);
 
-
-  // ==========================================
-  // NO STATION
-  // ==========================================
 
   if (!station) {
 
@@ -186,20 +163,12 @@ function BookingForm() {
   }
 
 
-  // ==========================================
-  // BOOKING → PAYMENT
-  // ==========================================
-
   const handleBooking = async (e) => {
 
     e.preventDefault();
 
     setError("");
 
-
-    // ------------------------------------------
-    // VALIDATION
-    // ------------------------------------------
 
     if (!selectedCharger) {
 
@@ -250,10 +219,6 @@ function BookingForm() {
       setLoading(true);
 
 
-      // ----------------------------------------
-      // SELECT CHARGER
-      // ----------------------------------------
-
       const chargerIndex =
         Number(selectedCharger);
 
@@ -270,10 +235,6 @@ function BookingForm() {
 
       }
 
-
-      // ----------------------------------------
-      // CHECK EXISTING BOOKINGS
-      // ----------------------------------------
 
       const bookingsRef =
         collection(
@@ -314,10 +275,6 @@ function BookingForm() {
         );
 
 
-      // ----------------------------------------
-      // CHECK TIME CONFLICT
-      // ----------------------------------------
-
       const requestedStart =
         startTime;
 
@@ -344,9 +301,6 @@ function BookingForm() {
             const booking =
               bookingDoc.data();
 
-
-            // Cancelled bookings don't block
-            // the charger.
 
             if (
               booking.status ===
@@ -400,10 +354,6 @@ function BookingForm() {
       }
 
 
-      // ----------------------------------------
-      // CALCULATE PAYMENT
-      // ----------------------------------------
-
       const durationHours =
         requestedDuration / 60;
 
@@ -422,10 +372,6 @@ function BookingForm() {
         );
 
 
-      // ----------------------------------------
-      // CALCULATE START / END
-      // ----------------------------------------
-
       const startDateTime =
         new Date(
           `${date}T${startTime}:00`
@@ -440,10 +386,6 @@ function BookingForm() {
           1000
         );
 
-
-      // ----------------------------------------
-      // GO TO PAYMENT
-      // ----------------------------------------
 
       navigate(
         "/wallet",
@@ -515,10 +457,6 @@ function BookingForm() {
   };
 
 
-  // ==========================================
-  // MAIN UI
-  // ==========================================
-
   return (
 
     <div className="
@@ -527,10 +465,6 @@ function BookingForm() {
       space-y-6
     ">
 
-
-      {/* ======================================
-          BACK
-      ======================================= */}
 
       <button
         onClick={() =>
@@ -553,10 +487,6 @@ function BookingForm() {
 
       </button>
 
-
-      {/* ======================================
-          HEADER
-      ======================================= */}
 
       <div>
 
@@ -589,10 +519,6 @@ function BookingForm() {
 
       </div>
 
-
-      {/* ======================================
-          STATION
-      ======================================= */}
 
       <div className="
         bg-slate-900
@@ -679,9 +605,6 @@ function BookingForm() {
       </div>
 
 
-      {/* ======================================
-          FORM
-      ======================================= */}
 
       <form
         onSubmit={handleBooking}
@@ -715,10 +638,6 @@ function BookingForm() {
 
         )}
 
-
-        {/* ====================================
-            CHARGER
-        ===================================== */}
 
         <div>
 
@@ -877,10 +796,6 @@ function BookingForm() {
         </div>
 
 
-        {/* ====================================
-            DATE + TIME
-        ===================================== */}
-
         <div className="
           grid
           grid-cols-1
@@ -996,10 +911,6 @@ function BookingForm() {
         </div>
 
 
-        {/* ====================================
-            DURATION
-        ===================================== */}
-
         <div>
 
           <label className="
@@ -1053,10 +964,6 @@ function BookingForm() {
 
         </div>
 
-
-        {/* ====================================
-            ESTIMATED PRICE
-        ===================================== */}
 
         {selectedCharger !== "" && (
 
@@ -1231,10 +1138,6 @@ function BookingForm() {
         )}
 
 
-        {/* ====================================
-            CONTINUE TO PAYMENT
-        ===================================== */}
-
         <button
           type="submit"
           disabled={
@@ -1296,10 +1199,6 @@ function BookingForm() {
 
 }
 
-
-// ==========================================
-// TIME HELPER
-// ==========================================
 
 function timeToMinutes(time) {
 

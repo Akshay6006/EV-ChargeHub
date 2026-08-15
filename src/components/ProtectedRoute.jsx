@@ -7,7 +7,6 @@ function ProtectedRoute({ children }) {
     loading
   } = useAuth();
 
-  // Firebase is checking the current session
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-950 flex items-center justify-center">
@@ -22,7 +21,6 @@ function ProtectedRoute({ children }) {
     );
   }
 
-  // Not logged in
   if (!user) {
     return (
       <Navigate
@@ -32,7 +30,6 @@ function ProtectedRoute({ children }) {
     );
   }
 
-  // Logged in but email isn't verified
   if (!user.emailVerified) {
     return (
       <Navigate
@@ -42,7 +39,7 @@ function ProtectedRoute({ children }) {
     );
   }
 
-  // Everything is okay
+
   return children;
 }
 

@@ -38,10 +38,6 @@ function Register() {
 
   const navigate = useNavigate();
 
-  // ==========================================
-  // FORM STATE
-  // ==========================================
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -53,11 +49,6 @@ function Register() {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
-
-  // ==========================================
-  // PASSWORD RULES
-  // ==========================================
 
   const passwordRules = {
     length: password.length >= 8,
@@ -74,11 +65,6 @@ function Register() {
     passwordRules.lowercase &&
     passwordRules.number &&
     passwordRules.special;
-
-
-  // ==========================================
-  // NAME VALIDATION
-  // ==========================================
 
   const validateName = () => {
 
@@ -103,11 +89,6 @@ function Register() {
     return null;
   };
 
-
-  // ==========================================
-  // EMAIL VALIDATION
-  // ==========================================
-
   const validateEmail = () => {
 
     const cleanEmail = email.trim();
@@ -127,11 +108,6 @@ function Register() {
     return null;
   };
 
-
-  // ==========================================
-  // PHONE VALIDATION
-  // ==========================================
-
   const validatePhone = () => {
 
     const cleanPhone = phone.trim();
@@ -140,7 +116,6 @@ function Register() {
       return "Please enter your mobile number.";
     }
 
-    // Exactly 10 digits and starts with 6-9
     const phoneRegex =
       /^[6-9][0-9]{9}$/;
 
@@ -150,11 +125,6 @@ function Register() {
 
     return null;
   };
-
-
-  // ==========================================
-  // PASSWORD VALIDATION
-  // ==========================================
 
   const validatePassword = () => {
 
@@ -168,11 +138,6 @@ function Register() {
 
     return null;
   };
-
-
-  // ==========================================
-  // REGISTER
-  // ==========================================
 
   const handleRegister = async (e) => {
 
@@ -229,11 +194,6 @@ function Register() {
       const cleanEmail = email.trim().toLowerCase();
       const cleanPhone = phone.trim();
 
-
-      // ==========================================
-      // CREATE FIREBASE ACCOUNT
-      // ==========================================
-
       const credential =
         await createUserWithEmailAndPassword(
           auth,
@@ -244,18 +204,9 @@ function Register() {
 
       const user = credential.user;
 
-      // ==========================================
-      // UPDATE FIREBASE DISPLAY NAME
-      // ==========================================
-
       await updateProfile(user, {
         displayName: cleanName
       });
-
-
-      // ==========================================
-      // CREATE FIRESTORE USER PROFILE
-      // ==========================================
 
       await setDoc(
         doc(db, "users", user.uid),
@@ -281,11 +232,6 @@ await sendEmailVerification(user);
         "Registration successful:",
         user.uid
       );
-
-
-      // ==========================================
-      // REDIRECT
-      // ==========================================
 
       navigate("/verify-email");
 
@@ -351,11 +297,6 @@ await sendEmailVerification(user);
 
   };
 
-
-  // ==========================================
-  // PASSWORD RULE COMPONENT
-  // ==========================================
-
   const PasswordRule = ({ valid, children }) => (
 
     <div
@@ -382,11 +323,6 @@ await sendEmailVerification(user);
   return (
 
     <div className="min-h-screen bg-slate-950 flex">
-
-
-      {/* =====================================
-          LEFT SIDE
-      ====================================== */}
 
       <div className="hidden lg:flex lg:w-[45%] relative overflow-hidden">
 
@@ -498,11 +434,6 @@ await sendEmailVerification(user);
         </div>
 
       </div>
-
-
-      {/* =====================================
-          RIGHT SIDE
-      ====================================== */}
 
       <div className="w-full lg:w-[55%] flex items-center justify-center p-6 py-10 overflow-y-auto">
 

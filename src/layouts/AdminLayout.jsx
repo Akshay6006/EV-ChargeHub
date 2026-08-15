@@ -33,9 +33,6 @@ function AdminLayout() {
   const { user, userData } = useAuth();
 
 
-  // ==========================================
-  // LOGOUT
-  // ==========================================
 
   const handleLogout = async () => {
 
@@ -57,9 +54,6 @@ function AdminLayout() {
   };
 
 
-  // ==========================================
-  // NAVIGATION
-  // ==========================================
 
   const navigation = [
 
@@ -114,9 +108,6 @@ function AdminLayout() {
   ];
 
 
-  // ==========================================
-  // SIDEBAR
-  // ==========================================
 
   const Sidebar = () => (
 
@@ -144,9 +135,6 @@ function AdminLayout() {
       `}
     >
 
-      {/* ====================================
-          BRAND
-      ===================================== */}
 
       <div className="h-20 px-6 border-b border-slate-800 flex items-center justify-between">
 
@@ -180,7 +168,6 @@ function AdminLayout() {
         </div>
 
 
-        {/* Mobile close */}
 
         <button
           onClick={() => setSidebarOpen(false)}
@@ -194,9 +181,6 @@ function AdminLayout() {
       </div>
 
 
-      {/* ====================================
-          ADMIN PROFILE
-      ===================================== */}
 
       <div className="p-4">
 
@@ -238,9 +222,7 @@ function AdminLayout() {
       </div>
 
 
-      {/* ====================================
-          NAVIGATION
-      ===================================== */}
+   
 
       <nav className="flex-1 px-4 overflow-y-auto">
 
@@ -299,9 +281,6 @@ function AdminLayout() {
       </nav>
 
 
-      {/* ====================================
-          FOOTER
-      ===================================== */}
 
       <div className="p-4 border-t border-slate-800">
 
@@ -328,16 +307,11 @@ function AdminLayout() {
     <div className="min-h-screen bg-slate-950 text-white">
 
 
-      {/* ====================================
-          SIDEBAR
-      ===================================== */}
+  
 
       <Sidebar />
 
 
-      {/* ====================================
-          MOBILE OVERLAY
-      ===================================== */}
 
       {sidebarOpen && (
 
@@ -351,24 +325,18 @@ function AdminLayout() {
       )}
 
 
-      {/* ====================================
-          MAIN
-      ===================================== */}
 
       <div className="lg:ml-72 min-h-screen min-w-0">
 
 
-        {/* ==================================
-            HEADER
-        =================================== */}
+   
 
         <header className="h-16 sm:h-20 border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-30">
 
           <div className="h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
 
 
-            {/* Mobile menu */}
-
+         
             <button
               onClick={() =>
                 setSidebarOpen(true)
@@ -381,7 +349,7 @@ function AdminLayout() {
             </button>
 
 
-            {/* Desktop title */}
+       
 
             <div className="hidden lg:block">
 
@@ -396,7 +364,7 @@ function AdminLayout() {
             </div>
 
 
-            {/* Right side */}
+         
 
             <div className="flex items-center gap-3 ml-auto">
 
@@ -417,9 +385,7 @@ function AdminLayout() {
         </header>
 
 
-        {/* ==================================
-            PAGE CONTENT
-        =================================== */}
+       
 
         <main className="p-4 sm:p-6 lg:p-8 w-full min-w-0">
 

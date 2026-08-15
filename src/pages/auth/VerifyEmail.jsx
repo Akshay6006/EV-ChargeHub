@@ -35,11 +35,6 @@ function VerifyEmail() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
-
-  // ==========================================
-  // CHECK CURRENT USER
-  // ==========================================
-
   useEffect(() => {
 
     const unsubscribe =
@@ -56,12 +51,9 @@ function VerifyEmail() {
             return;
           }
 
-
-          // Refresh Firebase user information
           await reload(currentUser);
 
 
-          // Already verified
           if (currentUser.emailVerified) {
 
             navigate("/dashboard", {
@@ -83,11 +75,6 @@ function VerifyEmail() {
 
   }, [navigate]);
 
-
-  // ==========================================
-  // CHECK VERIFICATION
-  // ==========================================
-
   const checkVerification = async () => {
 
     if (!auth.currentUser) {
@@ -102,7 +89,6 @@ function VerifyEmail() {
       setMessage("");
 
 
-      // Refresh user from Firebase
       await reload(auth.currentUser);
 
 
@@ -148,11 +134,6 @@ function VerifyEmail() {
     }
 
   };
-
-
-  // ==========================================
-  // RESEND VERIFICATION EMAIL
-  // ==========================================
 
   const resendVerification = async () => {
 
@@ -210,11 +191,6 @@ function VerifyEmail() {
 
   };
 
-
-  // ==========================================
-  // LOADING
-  // ==========================================
-
   if (loading) {
 
     return (
@@ -231,11 +207,6 @@ function VerifyEmail() {
     );
 
   }
-
-
-  // ==========================================
-  // PAGE
-  // ==========================================
 
   return (
 

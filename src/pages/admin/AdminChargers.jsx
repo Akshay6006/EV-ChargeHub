@@ -33,10 +33,6 @@ function AdminChargers() {
   const [updating, setUpdating] = useState(null);
 
 
-  // ==========================================
-  // FETCH STATIONS
-  // ==========================================
-
   useEffect(() => {
 
     setLoading(true);
@@ -95,10 +91,6 @@ function AdminChargers() {
   }, []);
 
 
-  // ==========================================
-  // FETCH BOOKINGS
-  // ==========================================
-
   useEffect(() => {
 
     const bookingsRef =
@@ -147,11 +139,6 @@ function AdminChargers() {
     return () => unsubscribe();
 
   }, []);
-
-
-  // ==========================================
-  // DATE PARSER
-  // ==========================================
 
   const parseBookingDate = (
     value,
@@ -254,11 +241,6 @@ function AdminChargers() {
     return null;
 
   };
-
-
-  // ==========================================
-  // ACTIVE BOOKING
-  // ==========================================
 
   const isBookingActive =
     (booking) => {
@@ -374,11 +356,6 @@ function AdminChargers() {
 
     };
 
-
-  // ==========================================
-  // CHECK CHARGER OCCUPIED
-  // ==========================================
-
   const isChargerOccupied = (
     station,
     charger,
@@ -411,11 +388,6 @@ function AdminChargers() {
           return false;
 
         }
-
-
-        // -------------------------------
-        // STATION MATCH
-        // -------------------------------
 
         const bookingStationId =
           String(
@@ -461,11 +433,6 @@ function AdminChargers() {
 
         }
 
-
-        // -------------------------------
-        // CHARGER ID
-        // -------------------------------
-
         const bookingChargerId =
           String(
             booking.chargerId ||
@@ -485,11 +452,6 @@ function AdminChargers() {
           return true;
 
         }
-
-
-        // -------------------------------
-        // CHARGER INDEX
-        // -------------------------------
 
         if (
           booking.chargerIndex !==
@@ -515,11 +477,6 @@ function AdminChargers() {
 
         }
 
-
-        // -------------------------------
-        // CHARGER NUMBER
-        // -------------------------------
-
         if (
           booking.chargerNumber !==
             undefined &&
@@ -544,10 +501,6 @@ function AdminChargers() {
 
         }
 
-
-        // -------------------------------
-        // CHARGER NAME
-        // -------------------------------
 
         const bookingChargerName =
           String(
@@ -588,11 +541,6 @@ function AdminChargers() {
 
   };
 
-
-  // ==========================================
-  // GET ACTUAL STATUS
-  // ==========================================
-
   const getStatus = (
     station,
     charger,
@@ -630,10 +578,6 @@ function AdminChargers() {
 
   };
 
-
-  // ==========================================
-  // FLATTEN CHARGERS
-  // ==========================================
 
   const allChargers =
     useMemo(() => {
@@ -685,11 +629,6 @@ function AdminChargers() {
       bookings,
     ]);
 
-
-  // ==========================================
-  // COUNTS
-  // ==========================================
-
   const total =
     allChargers.length;
 
@@ -716,11 +655,6 @@ function AdminChargers() {
         item.status ===
         "maintenance"
     ).length;
-
-
-  // ==========================================
-  // CHANGE MAINTENANCE STATUS
-  // ==========================================
 
   const toggleMaintenance =
     async (
@@ -764,11 +698,6 @@ function AdminChargers() {
           return;
 
         }
-
-
-        // Never manually mark
-        // an occupied charger
-        // as available.
 
         if (
           isChargerOccupied(
@@ -829,11 +758,6 @@ function AdminChargers() {
 
     };
 
-
-  // ==========================================
-  // LOADING
-  // ==========================================
-
   if (loading) {
 
     return (
@@ -886,10 +810,6 @@ function AdminChargers() {
       "
     >
 
-      {/* =====================================
-          HEADER
-      ====================================== */}
-
       <div>
 
         <p
@@ -927,11 +847,6 @@ function AdminChargers() {
 
       </div>
 
-
-      {/* =====================================
-          ERROR
-      ====================================== */}
-
       {error && (
 
         <div
@@ -958,11 +873,6 @@ function AdminChargers() {
         </div>
 
       )}
-
-
-      {/* =====================================
-          SUMMARY
-      ====================================== */}
 
       <div
         className="
@@ -1004,11 +914,6 @@ function AdminChargers() {
         />
 
       </div>
-
-
-      {/* =====================================
-          NO CHARGERS
-      ====================================== */}
 
       {allChargers.length ===
         0 && (
@@ -1071,12 +976,6 @@ function AdminChargers() {
         </div>
 
       )}
-
-
-      {/* =====================================
-          STATIONS
-      ====================================== */}
-
       {stations.map(
         (station) => {
 
@@ -1499,11 +1398,6 @@ function AdminChargers() {
 
 }
 
-
-// ==========================================
-// SUMMARY CARD
-// ==========================================
-
 function SummaryCard({
   label,
   value,
@@ -1568,11 +1462,6 @@ function SummaryCard({
 
 }
 
-
-// ==========================================
-// DETAIL ROW
-// ==========================================
-
 function DetailRow({
   label,
   value,
@@ -1615,11 +1504,6 @@ function DetailRow({
   );
 
 }
-
-
-// ==========================================
-// STATUS BADGE
-// ==========================================
 
 function StatusBadge({
   status,

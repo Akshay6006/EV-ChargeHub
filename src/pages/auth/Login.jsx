@@ -43,11 +43,6 @@ function Login() {
   const [error, setError] =
     useState("");
 
-
-  // ==========================================
-  // LOGIN
-  // ==========================================
-
   const handleLogin = async (e) => {
 
     e.preventDefault();
@@ -83,7 +78,6 @@ function Login() {
         credential.user;
 
 
-      // Get Firestore profile
       const userRef =
         doc(
           db,
@@ -198,11 +192,6 @@ function Login() {
   return (
 
     <div className="min-h-screen bg-slate-950 flex">
-
-
-      {/* =====================================
-          LEFT SIDE
-      ====================================== */}
 
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
 
@@ -360,11 +349,6 @@ function Login() {
         </div>
 
       </div>
-
-
-      {/* =====================================
-          RIGHT SIDE
-      ====================================== */}
 
       <div className="w-full lg:w-1/2 flex items-center justify-center p-6">
 

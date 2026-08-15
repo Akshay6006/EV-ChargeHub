@@ -142,11 +142,6 @@ function AdminDashboard() {
 
   }, []);
 
-
-  // ==========================================
-  // STATION STATISTICS
-  // ==========================================
-
   const stationStats = useMemo(() => {
 
     let totalChargers = 0;
@@ -216,10 +211,6 @@ function AdminDashboard() {
   }, [stations]);
 
 
-  // ==========================================
-  // BOOKING STATISTICS
-  // ==========================================
-
   const bookingStats = useMemo(() => {
 
     let active = 0;
@@ -278,8 +269,6 @@ function AdminDashboard() {
 
         }
 
-
-        // Only count money actually paid.
         if (
           ![
             "cancelled",
@@ -308,11 +297,6 @@ function AdminDashboard() {
 
   }, [bookings]);
 
-
-  // ==========================================
-  // RECENT BOOKINGS
-  // ==========================================
-
   const recentBookings =
     useMemo(() => {
 
@@ -336,10 +320,6 @@ function AdminDashboard() {
 
     }, [bookings]);
 
-
-  // ==========================================
-  // DELETE STATION
-  // ==========================================
 
   const handleDelete =
     async (stationId) => {
@@ -401,10 +381,6 @@ function AdminDashboard() {
 
     };
 
-
-  // ==========================================
-  // UPDATE STATION
-  // ==========================================
 
   const handleUpdate =
     async (e) => {
@@ -508,11 +484,6 @@ function AdminDashboard() {
       }
 
     };
-
-
-  // ==========================================
-  // HELPERS
-  // ==========================================
 
   function getDateValue(value) {
 
@@ -644,11 +615,6 @@ function AdminDashboard() {
 
   }
 
-
-  // ==========================================
-  // PAGE
-  // ==========================================
-
   return (
 
     <div
@@ -658,11 +624,6 @@ function AdminDashboard() {
         space-y-8
       "
     >
-
-
-      {/* ======================================
-          HEADER
-      ======================================= */}
 
       <div
         className="
@@ -741,11 +702,6 @@ function AdminDashboard() {
         </button>
 
       </div>
-
-
-      {/* ======================================
-          MAIN STATISTICS
-      ======================================= */}
 
       <div
         className="
@@ -994,11 +950,6 @@ function AdminDashboard() {
 
       </div>
 
-
-      {/* ======================================
-          SECONDARY STATISTICS
-      ======================================= */}
-
       <div
         className="
           grid
@@ -1217,11 +1168,6 @@ function AdminDashboard() {
         </div>
 
       </div>
-
-
-      {/* ======================================
-          RECENT BOOKINGS
-      ======================================= */}
 
       <div>
 
@@ -1676,11 +1622,6 @@ function AdminDashboard() {
         )}
 
       </div>
-
-
-      {/* ======================================
-          CHARGING STATIONS
-      ======================================= */}
 
       <div>
 
@@ -2420,11 +2361,6 @@ function AdminDashboard() {
         )}
 
       </div>
-
-
-      {/* ======================================
-          EDIT MODAL
-      ======================================= */}
 
       {editingStation && (
 
